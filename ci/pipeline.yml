@@ -1,5 +1,5 @@
 resources:
-  - name: git-repo-rMock
+  - name: git-repo-rmock
     type: git
     source:
       branch: develop
@@ -23,11 +23,11 @@ resources:
       regexp: rMock_(.*).pkg
 
 jobs:
-  - name: package-roku-radio-com-app
+  - name: package-rmock-app
     plan:
-      - get: git-repo-rMock
+      - get: git-repo-rmock
       - task: package
-        file: git-repo-rMock/ci/package.yml
+        file: git-repo-rmock/ci/package.yml
         params:
           ROKU_DEV_TARGET: ((roku-dev-device-ip))
           DEVPASSWORD: ((roku-dev-password))
@@ -36,12 +36,12 @@ jobs:
         params:
           file: output/rMock_*.pkg
 
-  - name: deploy-roku-radio-com-apps
+  - name: deploy-rmock-app
     plan:
-      - get: git-repo-rMock
+      - get: git-repo-rmock
         trigger: true
       - task: deploy
-        file: git-repo-rMock/ci/deploy.yml
+        file: git-repo-rmock/ci/deploy.yml
         params:
           ROKU_DEV_TARGET: ((roku-dev-device-ip))
           DEVPASSWORD: ((roku-dev-password))

@@ -1,7 +1,7 @@
 ---
 platform: darwin
 inputs:
-  - name: git-repo-rMock
+  - name: git-repo-rmock
 outputs:
   - name: output
 run:
@@ -9,7 +9,7 @@ run:
   args:
     - -exc
     - |
-      cd git-repo-rMock
+      cd git-repo-rmock
       make install
       cd ..
-      cp -R git-repo-rMock/dist/apps/ output/
+      cp -R git-repo-rmock/dist/apps/ output/
