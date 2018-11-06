@@ -1,0 +1,13 @@
+# Files #
+############
+ci/ci-credentials.yml
+
+# Folders #
+############
+out
+dist
+
+
+# Packages #
+############
+*.zip

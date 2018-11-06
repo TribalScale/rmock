@@ -1,0 +1,51 @@
+resources:
+  - name: git-repo-rMock
+    type: git
+    source:
+      branch: develop
+      private_key: ((github-private-key))
+      uri: git@github.com:TribalScale/rmock.git
+  - name: s3-zipStorage-rMock
+    type: s3
+    source:
+      bucket: roku-radio-com
+      access_key_id: ((s3-access-key))
+      region_name: ((s3-region))
+      secret_access_key: ((s3-secret-key))
+      regexp: rMock_(.*).zip
+  - name: s3-pkgStorage-rMock
+    type: s3
+    source:
+      bucket: roku-radio-com
+      access_key_id: ((s3-access-key))
+      region_name: ((s3-region))
+      secret_access_key: ((s3-secret-key))
+      regexp: rMock_(.*).pkg
+
+jobs:
+  - name: package-roku-radio-com-app
+    plan:
+      - get: git-repo-rMock
+      - task: package
+        file: git-repo-rMock/ci/package.yml
+        params:
+          ROKU_DEV_TARGET: ((roku-dev-device-ip))
+          DEVPASSWORD: ((roku-dev-password))
+          APP_KEY_PASS: ((roku-app-key))
+      - put: s3-pkgStorage-rMock
+        params:
+          file: output/rMock_*.pkg
+
+  - name: deploy-roku-radio-com-apps
+    plan:
+      - get: git-repo-rMock
+        trigger: true
+      - task: deploy
+        file: git-repo-rMock/ci/deploy.yml
+        params:
+          ROKU_DEV_TARGET: ((roku-dev-device-ip))
+          DEVPASSWORD: ((roku-dev-password))
+          APP_KEY_PASS: ((roku-app-key))
+      - put: s3-zipStorage-rMock
+        params:
+          file: output/rMock_*.zip

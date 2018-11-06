@@ -1,0 +1,17 @@
+---
+platform: darwin
+inputs:
+  - name: git-repo-rMock
+
+outputs:
+  - name: output
+
+run:
+  path: sh
+  args:
+    - -exc
+    - |
+      cd git-repo-rMock
+      make pkg
+      cd ..
+      cp -R git-roku-radio-com-repo/dist/packages/ output/
