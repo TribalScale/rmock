@@ -1,7 +1,7 @@
 ---
 platform: darwin
 inputs:
-  - name: git-repo-rmock
+  - name: git-roku-radio-com-repo
 outputs:
   - name: output
 run:
@@ -9,7 +9,11 @@ run:
   args:
     - -exc
     - |
-      cd git-repo-rmock
+      cd git-roku-radio-com-repo
       make install
       cd ..
-      cp -R git-repo-rmock/dist/apps/ output/
+      cp -R git-roku-radio-com-repo/dist/apps/ output/
+      systemIp=`ifconfig |  grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | sed -n 1p`
+      cd git-roku-radio-com-repo
+      curl -d "" "http://$ROKU_DEV_TARGET:8060/launch/dev?RunTests=true&ip=$systemIp"
+      node app.js

@@ -1,51 +1,51 @@
 resources:
-  - name: git-repo-rmock
+  - name: git-roku-radio-com-repo
     type: git
     source:
       branch: develop
       private_key: ((github-private-key))
-      uri: git@github.com:TribalScale/rmock.git
-  - name: s3-zipStorage-rMock
+      uri: git@github.com:Entercom/radio-roku.git
+  - name: roku-radio-com-s3-zip
     type: s3
     source:
       bucket: roku-radio-com
       access_key_id: ((s3-access-key))
       region_name: ((s3-region))
       secret_access_key: ((s3-secret-key))
-      regexp: rMock_(.*).zip
-  - name: s3-pkgStorage-rMock
+      regexp: roku_radio_com_(.*).zip
+  - name: roku-radio-com-s3-pkg
     type: s3
     source:
       bucket: roku-radio-com
       access_key_id: ((s3-access-key))
       region_name: ((s3-region))
       secret_access_key: ((s3-secret-key))
-      regexp: rMock_(.*).pkg
+      regexp: roku_radio_com_(.*).pkg
 
 jobs:
-  - name: package-rmock-app
+  - name: package-roku-radio-com-app
     plan:
-      - get: git-repo-rmock
+      - get: git-roku-radio-com-repo
       - task: package
-        file: git-repo-rmock/ci/package.yml
+        file: git-roku-radio-com-repo/ci/package.yml
         params:
           ROKU_DEV_TARGET: ((roku-dev-device-ip))
           DEVPASSWORD: ((roku-dev-password))
           APP_KEY_PASS: ((roku-app-key))
-      - put: s3-pkgStorage-rMock
+      - put: roku-radio-com-s3-pkg
         params:
-          file: output/rMock_*.pkg
+          file: output/roku_radio_com_*.pkg
 
-  - name: deploy-rmock-app
+  - name: deploy-roku-radio-com-apps
     plan:
-      - get: git-repo-rmock
+      - get: git-roku-radio-com-repo
         trigger: true
       - task: deploy
-        file: git-repo-rmock/ci/deploy.yml
+        file: git-roku-radio-com-repo/ci/deploy.yml
         params:
           ROKU_DEV_TARGET: ((roku-dev-device-ip))
           DEVPASSWORD: ((roku-dev-password))
           APP_KEY_PASS: ((roku-app-key))
-      - put: s3-zipStorage-rMock
+      - put: roku-radio-com-s3-zip
         params:
-          file: output/rMock_*.zip
+          file: output/roku_radio_com_*.zip
