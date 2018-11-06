@@ -1,0 +1,28 @@
+'********** Copyright 2018  Inc **********
+
+#Channel Details
+title=rMock
+
+#Build Details
+major_version=0
+minor_version=0
+build_version=1
+
+#Icons
+mm_icon_focus_hd=pkg:/images/icons/icon_hd.png
+mm_icon_focus_sd=pkg:/images/icons/icon_sd.png
+
+#Splash
+splash_screen_sd=pkg:/images/splash/rMockLogoSplash_sd.png
+splash_screen_hd=pkg:/images/splash/rMockLogoSplash_hd.png
+splash_screen_fhd=pkg:/images/splash/rMockLogoSplash_fhd.png
+splash_color=#000000
+splash_min_time=2000
+
+#Resolutions
+ui_resolutions=fhd
+uri_resolution_autosub=$$res$$,sd,hd,fhd
+
+#Compilation Conditionals
+
+#libararies
