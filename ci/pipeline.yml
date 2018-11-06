@@ -8,7 +8,7 @@ resources:
   - name: s3-zipStorage-rMock
     type: s3
     source:
-      bucket: roku-radio-com
+      bucket: roku-rmock
       access_key_id: ((s3-access-key))
       region_name: ((s3-region))
       secret_access_key: ((s3-secret-key))
@@ -16,7 +16,7 @@ resources:
   - name: s3-pkgStorage-rMock
     type: s3
     source:
-      bucket: roku-radio-com
+      bucket: roku-rmock
       access_key_id: ((s3-access-key))
       region_name: ((s3-region))
       secret_access_key: ((s3-secret-key))

@@ -1,7 +1,7 @@
 ---
 platform: darwin
 inputs:
-  - name: git-repo-rMock
+  - name: git-repo-rmock
 
 outputs:
   - name: output
@@ -11,7 +11,7 @@ run:
   args:
     - -exc
     - |
-      cd git-repo-rMock
+      cd git-repo-rmock
       make pkg
       cd ..
       cp -R git-roku-radio-com-repo/dist/packages/ output/
