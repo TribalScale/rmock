@@ -10,6 +10,15 @@ function main( args as Dynamic )
   scene = screen.CreateScene("BaseScene")
   screen.show()
 
+  ' Run Tests
+  if ( ( isValid(TestRunner) and type(TestRunner) = "Function" ) )
+      Runner = TestRunner()
+      Runner.logger.SetVerbosity(3)
+      Runner.Run()
+  else
+      print "No tests run"
+  end if
+
   mainEventLoop( port )
 
 end function
