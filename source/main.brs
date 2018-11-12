@@ -13,7 +13,7 @@ function main( args as Dynamic )
   ' Run Tests
   if ( ( isValid(TestRunner) and type(TestRunner) = "Function" ) )
       Runner = TestRunner()
-      Runner.logger.SetVerbosity(3)
+      Runner.logger.SetVerbosity(1)
       Runner.Run()
   else
       print "No tests run"

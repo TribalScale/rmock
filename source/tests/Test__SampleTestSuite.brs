@@ -12,12 +12,14 @@ function TestSuite__Sample()
 
   ' Adding Test cases'
   this.addTest("isValid() Type Check", TestCase__Sample_isValidTestCase)
+  this.addTest("DisplayMeasurement TestCase", TestCase_DisplayMeasurement )
 
   return this
 end function
 
 '*********** HELPERS ****************'
 function SampleTestSuite__SetUp()
+
 end function
 
 function SampleTestSuite__TearDown()
