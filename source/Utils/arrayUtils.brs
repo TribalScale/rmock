@@ -154,6 +154,40 @@ function arrayFindIndex( array as Object, args as Object, predicate as function 
 
 end function
 
+' compares the values of two arrays
+' @param array object
+' @param array object
+' @return boolean true if equal otherwise false
+function arrayEquals( arr1 as Object, arr2 as Object )
+
+  if ( not ( isArray( arr1 ) AND isArray( arr2 ) ) ) then return false
+
+  if ( arr1.Count() <> arr2.Count() ) then return false
+
+  while ( ( arr1.isNext() and arr2.isNext() ) )
+
+    aEle = arr1.next()
+    bEle = arr2.next()
+
+    if ( type(aEle) <> type(bEle) ) then return false
+
+    if ( LCase(type( aEle )) = "roarray" AND LCase(type( bEle )) = "roarray" )
+      arrayCheckStatus = arrayEquals( aEle, bEle )
+      if ( not arrayCheckStatus ) then return false
+    end if
+
+    if ( LCase(type( aEle )) = "roassociativearray" AND LCase(type( bEle )) = "roassociativearray" )
+      if ( FormatJson( aEle ) <> FormatJson( bEle ) ) then return false
+    end if
+
+    if (aEle <> bEle) then return false
+
+  end while
+
+  return true
+
+end function
+
 
 function arraySort( targetArray as object, sourceNodeArray as object )
   sourceMap = {}
