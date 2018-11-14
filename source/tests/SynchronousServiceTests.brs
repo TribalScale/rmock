@@ -3,7 +3,8 @@ function TestCase_DisplayMeasurement()
 
   ' Set up
   mockUnitConvertor = Mock( UnitConversionService() )
-  mockUnitConvertor.expects("lbTokg").once().withArguments( [ 4.0 ] ).returns( 1.81437 )
+  mockUnitConvertor.when("lbToKg").returns(1.81437)
+  mockUnitConvertor.expects("lbTokg").once().withArguments( [ 4.0 ] )
 
   ' Exercise
   scale = ScaleService( mockUnitConvertor.proxy() )
