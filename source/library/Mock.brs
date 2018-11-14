@@ -5,13 +5,25 @@
 function Mock( obj as Dynamic )
 
   obj.append( { _mockDetails: { calls: 0, callCount: 0 }, _expectations: { } } )
-  obj.append( { funcObserv: CreateObject("roSGNode", "node") } )
 
   mockObj = {
 
 
     objReference: obj
     objCopy: obj
+
+
+    ' Sets up the actions on the mock obj
+    ' @param string methodname
+    ' @return object action
+    when: function( methodName as String )
+
+      actn = Actions( m )
+      actn.create( methodName )
+
+      return actn
+
+    end function,
 
 
     ' Sets up the expectation

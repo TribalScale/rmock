@@ -81,17 +81,6 @@ function Expectation( mockObj as Object )
 
     end function
 
-    ' Sets a return value on the expectation
-    ' @param dynamic object type
-    returns: function( value as Dynamic )
-
-      m.mockObj.objCopy._mockDetails[ m.methodName ][ "returnValue" ] = value
-      m.mockObj.objCopy._mockDetails[ "returnValue" ] = value
-
-      return m
-
-    end function,
-
     ' mock anonymous function to create our stub
     ' @param: dynamic type (n times)
     mockFunction: function( p1 = invalid as Dynamic, p2 = invalid as Dynamic, p3 = invalid as Dynamic, p4 = invalid as Dynamic, p5 = invalid as Dynamic )
