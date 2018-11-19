@@ -86,7 +86,6 @@ function Expectation( mockObj as Object )
     mockFunction: function( p1 = invalid as Dynamic, p2 = invalid as Dynamic, p3 = invalid as Dynamic, p4 = invalid as Dynamic, p5 = invalid as Dynamic )
 
       ' To Do: Store call stats within mockDetails with the methodName
-
       argValues = []
 
       if ( isValid( p1 ) ) then argValues.push( p1 )
@@ -95,10 +94,14 @@ function Expectation( mockObj as Object )
       if ( isValid( p4 ) ) then argValues.push( p4 )
       if ( isValid( p5 ) ) then argValues.push( p5 )
 
-      m._mockDetails["argValues"] = argValues
-      m._mockDetails.calls = m._mockDetails.calls + 1
+      if ( isValid( m._mockDetails ) )
 
-      if ( isValid( m._mockDetails[ "returnValue" ] ) ) then return m._mockDetails[ "returnValue" ]
+        m._mockDetails["argValues"] = argValues
+        m._mockDetails.calls = m._mockDetails.calls + 1
+
+        if ( isValid( m._mockDetails[ "returnValue" ] ) ) then return m._mockDetails[ "returnValue" ]
+
+      end if
 
     end function
 
