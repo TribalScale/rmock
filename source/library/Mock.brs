@@ -4,13 +4,14 @@
 ' @return object A mock object
 function Mock( obj as Dynamic )
 
-  obj.append( { _mockDetails: { calls: 0, callCount: 0 }, _expectations: { } } )
+  _objCopy = clone( obj )
+  _objCopy.append( { _mockDetails: { calls: 0, callCount: 0 }, _expectations: { } } )
 
   mockObj = {
 
 
     objReference: obj
-    objCopy: obj
+    objCopy: _objCopy
 
 
     ' Sets up the actions on the mock obj
@@ -61,6 +62,16 @@ function Mock( obj as Dynamic )
     ' Returns a mock of the given proxy object
     proxy: function()
       return m.objCopy
+    end function,
+
+    ' Restores all mocked functions to be back to the given reference
+    restore: function()
+    
+      _objCopy = clone( m.objReference )
+      _objCopy.append( { _mockDetails: { calls: 0, callCount: 0 }, _expectations: { } } )
+
+      m.objCopy = _objCopy
+
     end function
 
   }

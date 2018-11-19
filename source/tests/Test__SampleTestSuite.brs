@@ -14,6 +14,9 @@ function TestSuite__Sample()
   this.addTest("isValid() Type Check", TestCase__Sample_isValidTestCase)
   this.addTest("DisplayMeasurement TestCase", TestCase_DisplayMeasurement )
 
+  ' Array utils test cases'
+  this.addTest("ArrayMap - Mock Function Test Case", TestCase__ArrayMap )
+
   return this
 end function
 

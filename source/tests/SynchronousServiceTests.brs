@@ -12,9 +12,9 @@ function TestCase_DisplayMeasurement()
   measurement = scale.DisplayMeasurement( "kg" )
 
   ' Verify
-  verifiedMock = mockUnitConvertor.verify()
-  measurementEquals = ( measurement = "1.81437kg" )
+  mockStatus = mockUnitConvertor.verify()
+  isEquals = ( measurement = "1.81437kg" )
 
-  return m.assertTrue( ( verifiedMock AND measurementEquals ) )
+  return m.assertTrue( ( mockStatus AND isEquals ) )
 
 end function
