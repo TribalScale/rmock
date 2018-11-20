@@ -2,16 +2,17 @@
 ' Creates a mock object Instance
 ' @param object. An actual implementation or a suitable stub
 ' @return object A mock object
-function Mock( obj as Dynamic )
+function Mock( obj as Dynamic, expctn = Expectation() as Object, actn = Actions() as Object )
 
   _objCopy = clone( obj )
   _objCopy.append( { _mockDetails: { calls: 0, callCount: 0 }, _expectations: { } } )
 
   mockObj = {
 
-
-    objReference: obj
-    objCopy: _objCopy
+    objReference: obj,
+    objCopy: _objCopy,
+    actn: actn,
+    expctn: expctn,
 
 
     ' Sets up the actions on the mock obj
@@ -19,10 +20,8 @@ function Mock( obj as Dynamic )
     ' @return object action
     when: function( methodName as String )
 
-      actn = Actions( m )
-      actn.create( methodName )
-
-      return actn
+      m.actn.create( methodName )
+      return m.actn
 
     end function,
 
@@ -32,12 +31,10 @@ function Mock( obj as Dynamic )
     ' @return Object expection object
     expects: function( methodName as String )
 
-      expctn = Expectation( m )
-
       if ( m.objCopy._expectations.DoesExist( methodName ) ) then return m.objCopy._expectations.Lookup( methodName )
 
-      m.objCopy._expectations[ methodName ] = expctn.create( methodName )
-      return expctn
+      m.objCopy._expectations[ methodName ] = m.expctn.create( methodName )
+      return m.expctn
 
     end function,
 
@@ -66,7 +63,7 @@ function Mock( obj as Dynamic )
 
     ' Restores all mocked functions to be back to the given reference
     restore: function()
-    
+
       _objCopy = clone( m.objReference )
       _objCopy.append( { _mockDetails: { calls: 0, callCount: 0 }, _expectations: { } } )
 
@@ -75,6 +72,9 @@ function Mock( obj as Dynamic )
     end function
 
   }
+
+  mockObj.actn.setMockObj( mockObj )
+  mockObj.expctn.setMockObj( mockObj )
 
   return mockObj
 

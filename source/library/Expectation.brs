@@ -2,11 +2,17 @@
 ' Expectation Object Definition
 ' @param object a mock object instance
 ' @return object expectation object instance
-function Expectation( mockObj as Object )
+function Expectation()
 
   obj = {
-    mockObj: mockObj,
+    mockObj: invalid,
     methodName: "",
+
+    ' set a mockObj reference
+    ' @param object mockObj
+    setMockObj: function( mockObj as Object )
+      m.mockObj = mockObj
+    end function,
 
     ' Replaces the given method name with an anonymous function
     ' @param string methodName
