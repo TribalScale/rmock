@@ -1,10 +1,16 @@
 
-function Actions( mockObj as Object )
+function Actions()
 
   obj = {
 
-    mockObj: mockObj,
+    mockObj: invalid,
     methodName: ""
+
+    ' set a mockObj reference
+    ' @param object mockObj
+    setMockObj: function( mockObj as Object )
+      m.mockObj = mockObj
+    end function,
 
     ' Creates a mock action item for the given method
     ' @param String methodName
