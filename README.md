@@ -5,6 +5,7 @@ Standalone mocks for brightscript. It works with Roku's [Unit Test Framework](ht
 ## Getting Started
 
 1. Clone or Fork the code from the github repo
+2. Delete the rMock.brs file found under the source branch ( This file is generated automatically and is not needed when making changes to the main code base. )
 2. Deploy code to device
 3. This should display a blank page. You'd have to see the test results on your telnet port: <DEVICE_IP>:8085. You can find more information on [debugging here](https://sdkdocs.roku.com/display/sdkdoc/Debugging+Your+Application)
 
@@ -13,6 +14,8 @@ Standalone mocks for brightscript. It works with Roku's [Unit Test Framework](ht
 To include the rMock library in your actual testsuite, you will need to copy the rMock.brs file found on the `/source` folder. Make sure to include this file within `/source` folder on your project. It can be placed within any subfolder under `/source`
 
 You can find more as to how to use the `Mock` library from the documentation.
+
+To generate `rMock.brs`, you need to have `node` and `npm` installed. Once you have both running in your environment, Simply running `node scripts.js` would create the rMock.brs file. The purpose of this file is to create a single file code base that could be dropped in like a library in the main project.
 
 ### Prerequisites
 
