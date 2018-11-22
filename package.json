@@ -1,0 +1,23 @@
+{
+  "name": "rmock",
+  "version": "0.0.1",
+  "description": "A standalone mock library for brightscript",
+  "main": "main.brs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "y"
+  },
+  "keywords": [
+    "mock",
+    "brightscript"
+  ],
+  "author": "Mark A, Mark Z",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "concat-files": "^0.1.1"
+  },
+  "dependencies": {}
+}
