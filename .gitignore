@@ -6,6 +6,7 @@ ci/ci-credentials.yml
 ############
 out
 dist
+node_modules
 
 
 # Packages #
